@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import {Test, console} from "forge-std/Test.sol";
-import "../src/Web3.sol";
+import {TestContract} from "../src/Web3.sol";
 
 contract Web3Test is Test{
 
