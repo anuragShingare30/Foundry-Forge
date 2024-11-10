@@ -30,8 +30,10 @@ contract MyScript is Script{
 
 
 // // DEPLOYING AND VERIFYING ON TESTNET
-// forge script --chain sepolia script/Deploy.s.sol:MyScript --rpc-url $SEPOLIA_RPC_URL --broadcast --verify -vvvv
-// forge script --chain sepolia script/Deploy.s.sol:MyScript --rpc-url $SEPOLIA_RPC_URL --account <account_name> --sender <address> --broadcast --verify -vvvv
+// forge script script/Deploy.s.sol:MyScript --rpc-url $SEPOLIA_RPC_URL --broadcast --verify -vvvv
+// forge script script/Deploy.s.sol:MyScript --rpc-url $SEPOLIA_RPC_URL --account <account_name> --sender <address> --broadcast --verify -vvvv
+// forge script script/Deploy.s.sol:MyScript --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify -vvvv
+
 
 // storing private key
 // cast wallet list
@@ -40,3 +42,4 @@ contract MyScript is Script{
 // interacting
 // cast send <address> "setName(string)" anurag --rpc-url <rpc_url> --private-key <private_key>
 // cast call <address> "getName()"
+// cast to-base 0x7717 dec
