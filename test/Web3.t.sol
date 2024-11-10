@@ -8,11 +8,12 @@ contract Web3Test is Test{
 
     TestContract token;
 
-    function setUp() public {
+    function setUp() external {
+        // NEW SC INSTANCE
         token = new TestContract();
     }
 
-    function testName() public view{
+    function testSetName() public view{
         console.log(token.name());
         assertEq(token.name(), "test");
     }
@@ -22,3 +23,6 @@ contract Web3Test is Test{
         assertEq(token.getName(), "anurag");
     }
 }
+
+
+// forge test -vvv
