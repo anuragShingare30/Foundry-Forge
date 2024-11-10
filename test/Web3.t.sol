@@ -26,3 +26,4 @@ contract Web3Test is Test{
 
 
 // forge test -vvv
+// forge debug --debug src/Web3.sol:TestContract --sig "setName()" "anurag"
