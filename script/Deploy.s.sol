@@ -15,7 +15,7 @@ contract MyScript is Script{
         
         // If we have constructor then passed the value in the function as params.
         // CREATED A NEW CONTRACT INSTANCE.
-        TestContract token = new TestContract();
+        TestContract token = new TestContract(msg.sender);
         
         vm.stopBroadcast();
         return token;

@@ -34,7 +34,9 @@ contract TestContract is ERC721, ERC721Enumerable, ERC721Pausable, Ownable {
         _;
     }
 
-    constructor() ERC721("Web3", "ERC721") Ownable(msg.sender) {}
+    constructor(address testOwner) ERC721("Web3", "ERC721") Ownable(msg.sender) {
+
+    }
 
     function _baseURI() internal pure override returns (string memory) {
         // THIS STORE OUR NFTs IMAGE AND METADATA, ITS THE UNIQUE IDENTIFIER.

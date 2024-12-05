@@ -2,8 +2,8 @@
 pragma solidity ^0.8.0;
 
 import {Test, console} from "forge-std/Test.sol";
-import {TestContract} from "../src/Web3.sol";
-import {MyScript} from "../script/Deploy.s.sol";
+import {TestContract} from "../../src/Web3.sol";
+import {MyScript} from "../../script/Deploy.s.sol";
 
 contract Web3Test is Test{
 
@@ -23,11 +23,16 @@ contract Web3Test is Test{
 
     function testMint() public{
         vm.expectRevert();
-        token.publicMint();
+        // THIS TEST PASS MEANS - THE NEXT LINE FAILS
+        token.publicMint{value:10e18}();
     }
 
     
 }
+
+// vm?
+// vm.prank()?
+// vm.broadcast()?
 
 
 // 1. UNIT TESTING - TESTING A SPECIFIC PART OF OUR CODE.
@@ -36,19 +41,25 @@ contract Web3Test is Test{
 // 4. STAGING TEST - TESTING OUR CODE IN TESTNET/MAINNET
 
 
+// // TO LOAD THE .env CONTENT
+// source .env
+// echo $RPC_URL
 
-// TESTING SC
+// // TESTING SC
 // forge test -vvv
 // forge test --fork-url $RPC_URL
 
-// TO RUN THE SINGLE TEST
-// forge test -m testBalance -vvv --fork-url $RPC_URL
+// // TO RUN THE SINGLE TEST
+// forge test --mt testBalance -vvv --fork-url $RPC_URL
 
-// CONVERGING SC - This command displays which parts of your code are covered by tests.
-// forge converge --fork-url $RPC_URL
+// // CONVERGING SC -> This command displays which parts of your code are covered by tests.
+// forge converge --fork-url $RPC_URL   
 
-// DEBUGGING SC
+// // DEBUGGING SC
 // forge debug --debug src/Web3.sol:TestContract --sig "setName()" "anurag"
 
-// Forge can remap dependencies to make them easier to import. Forge will automatically try to deduce some remappings for you:
+// // Forge can remap dependencies to make them easier to import. Forge will automatically try to deduce some remappings for you:
 // forge remappings
+
+
+// // INTEGRATION TEST

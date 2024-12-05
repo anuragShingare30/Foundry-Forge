@@ -1,0 +1,7 @@
+-include .env
+
+# THIS IS USED TO WRITE THE LARGE COMMANDS FOR FOUNDRY-FORGE IN SHORT FOR COPY-PASTE
+# USE COMMAND
+# make build
+
+build:; forge build
