@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {Test, console} from "../../lib/foundry-devops/test/DevOpsToolsTest.t.sol";
+import {Test} from "../../lib/foundry-devops/test/DevOpsToolsTest.t.sol";
 import {TestContract} from "../../src/Web3.sol";
 import {MyScript} from "../../script/Deploy.s.sol";
 
@@ -17,7 +17,7 @@ contract Web3Test is Test{
     }
 
     function testBalance() public view {
-        console.log(token.publicMintOpen());
+        // console.log(token.publicMintOpen());
         assertEq(token.publicMintOpen(), false);
     }
 
