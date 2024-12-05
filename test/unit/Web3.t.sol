@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {Test, console} from "forge-std/Test.sol";
+import {Test, console} from "../../lib/foundry-devops/test/DevOpsToolsTest.t.sol";
 import {TestContract} from "../../src/Web3.sol";
 import {MyScript} from "../../script/Deploy.s.sol";
 
