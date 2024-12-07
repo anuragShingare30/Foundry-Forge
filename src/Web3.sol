@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract TestContract is ERC721, ERC721Enumerable, ERC721Pausable, Ownable {
     uint256 private _nextTokenId;
     uint256 constant maxSupply = 3;
-    uint public allowListFund = 0.001 ether;
+    uint public allowListFund = 0.001 ether; 
     uint public publicMintFund = 0.01 ether;
 
     bool public publicMintOpen = false;

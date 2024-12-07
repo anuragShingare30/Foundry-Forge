@@ -1,44 +1,52 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {Test} from "../../lib/foundry-devops/test/DevOpsToolsTest.t.sol";
-import {TestContract} from "../../src/Web3.sol";
-import {MyScript} from "../../script/Deploy.s.sol";
+import {Test} from "forge-std/Test.sol";
+import {console} from "forge-std/console.sol";
 
-contract Web3Test is Test{
+error Unauthorized();
 
-    TestContract token;
+contract Web3Contract{
+    address public owner;
+    uint public count;
 
-    function setUp() external {
-        // BY THIS WAY WE NEED TO JUST UPDATE THE DEPLOY SCRIPT
-        // NEW SC INSTANCE
-        MyScript myscript = new MyScript();
-        token = myscript.run();
+    constructor(){
+        owner = msg.sender;
     }
 
-    function testBalance() public view {
-        // console.log(token.publicMintOpen());
-        assertEq(token.publicMintOpen(), false);
+    function increase() public {
+        if(msg.sender != owner){
+            revert Unauthorized();
+        }
+        count++;
     }
-
-    function testMint() public{
-        vm.expectRevert();
-        // THIS TEST PASS MEANS - THE NEXT LINE FAILS
-        token.publicMint{value:10e18}();
-    }
-
-    
 }
 
-// vm?
-// vm.prank()?
-// vm.broadcast()?
+contract Web3Test is Test{
+    Web3Contract token;
+    
+    function setUp() external {
+        token = new Web3Contract();
+    }
+
+    function test_increament() public {
+        assertEq(token.count(),0);
+        token.increase();
+        assertEq(token.count(),1);
+    }
+
+    function testFail_IncrementAsNotOwner() public {
+        vm.expectRevert("Niche ka function pass nahi hora hai!!!");
+        vm.prank(address(0));
+        token.increase();
+    }
+}
 
 
 // 1. UNIT TESTING - TESTING A SPECIFIC PART OF OUR CODE.
 // 2. INTEGRATION TEST - INTEGRATING SC A TESTING SPECIFIC PORTION.
 // 3. FORKED TEST - TESTING OUR CODE ON A SIMULATED REAL ENVIRONMENT.
-// 4. STAGING TEST - TESTING OUR CODE IN TESTNET/MAINNET
+// 4. STAGING TEST - TESTING OUR CODE IN TESTNET/MAINNET. EX:- SEPOLIA, ANVIL LOCAL TESTING
 
 
 // // TO LOAD THE .env CONTENT
@@ -62,4 +70,3 @@ contract Web3Test is Test{
 // forge remappings
 
 
-// // INTEGRATION TEST
